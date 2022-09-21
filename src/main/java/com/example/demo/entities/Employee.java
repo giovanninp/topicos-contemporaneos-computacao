@@ -28,12 +28,20 @@ public class Employee {
 		return this.name;
 	}
 	
+	public String getRole() {
+		return this.role;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	@Override
