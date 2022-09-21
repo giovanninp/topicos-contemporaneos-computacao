@@ -36,7 +36,7 @@ public class EmployeeController {
 	Employee index(@PathVariable Long id) {
 		return repository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
 	}
-	
+
 	@PutMapping("/employees/{id}")
 	Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
 		return repository.findById(id)
