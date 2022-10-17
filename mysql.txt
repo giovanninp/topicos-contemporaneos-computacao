@@ -1,0 +1,86 @@
+CREATE TABLE competitor(
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	registration BIGINT NOT NULL,
+	performance FLOAT NOT NULL,
+	standard FLOAT NOT NULL
+);
+
+CREATE TABLE bet(
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	negotiator_register VARCHAR(120) NOT NULL,
+	date DATETIME NOT NULL,
+	number BIGINT NOT NULL UNIQUE
+);
+
+CREATE TABLE ticket (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	base_value FLOAT NOT NULL,
+	comission FLOAT NOT NULL,
+	paid_value FLOAT NOT NULL,
+	bet_id INT(6) UNSIGNED NOT NULL,
+	competitor_id INT(6) UNSIGNED NOT NULL,
+	FOREIGN KEY(bet_id) REFERENCES bet(id),	
+	FOREIGN KEY(competitor_id) REFERENCES competitor(id)
+);
+
+INSERT INTO competitor VALUES (
+	NULL,
+	'Oswaldo Aquino', 
+	1212,
+	0.0,
+	0.0
+);
+
+INSERT INTO competitor VALUES (
+	NULL,
+	'Gregorio Matos', 
+	1314,
+	0.0,
+	0.0
+);
+
+INSERT INTO competitor VALUES (
+	NULL,
+	'Nicolau Lau', 
+	1520,
+	0.0,
+	0.0
+);
+
+INSERT INTO bet VALUES (
+	NULL,
+	'000.000.000-00',
+	DATE_ADD(NOW(), INTERVAL 30 DAY),
+	1
+);
+
+INSERT INTO bet VALUES (
+	NULL,
+	'000.000.000-11',
+	DATE_ADD(NOW(), INTERVAL 30 DAY),
+	2
+);
+
+INSERT INTO bet VALUES (
+	NULL,
+	'000.000.111-11',
+	DATE_ADD(NOW(), INTERVAL 30 DAY),
+	3
+);
+
+INSERT INTO ticket VALUES (
+	NULL,
+	10.0,
+	10.0,
+	1,
+	1
+);
+
+INSERT INTO ticket VALUES (
+	NULL,
+	5.0,
+	15.0,
+	1,
+	2
+);
