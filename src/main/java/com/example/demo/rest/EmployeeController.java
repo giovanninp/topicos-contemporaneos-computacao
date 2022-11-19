@@ -1,5 +1,6 @@
 package com.example.demo.rest;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +27,14 @@ public class EmployeeController {
 	List<Employee> all() {
 		return repository.findAll();
 	}
-	
+
 	@PostMapping("/employees")
 	Employee newEmployee(@RequestBody Employee employee) {
+		return repository.save(employee);
+	}
+	
+	@PostMapping(path="/employees/xml", consumes= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	Employee newEmployeeFromXML(@RequestBody Employee employee) {
 		return repository.save(employee);
 	}
 	
