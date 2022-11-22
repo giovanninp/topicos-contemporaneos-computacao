@@ -13,45 +13,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.school.bet.entities.Competitor;
 import com.school.bet.repositories.CompetitorRepository;
+import com.school.bet.services.CompetitorImporter;
 import com.school.validators.CompetitorValidator;
 
 @RestController
 public class CompetitorController {
 	private final CompetitorRepository repository;
-	
+	private CompetitorImporter importer;
+
 	public CompetitorController(CompetitorRepository repository) {
 		this.repository = repository;
+		this.importer = new CompetitorImporter();
 	}
-	
+
 	@GetMapping("/competitors")
 	List<Competitor> all() {
 		return repository.findAll();
 	}
-	
+
+	@PostMapping("/competitors/local")
+	List<Competitor> localBatch() {
+		List<Competitor> newCompetitors = this.importer.execute();
+
+		newCompetitors.forEach(competitor -> {
+			this.repository.save(competitor);
+		});
+
+		return newCompetitors;
+	}
+
 	@PostMapping("/competitors")
 	Competitor newCompetitor(@RequestBody Competitor competitor) {
 		try {
 			CompetitorValidator.isValidPerformance(competitor.getPerformance());
 			CompetitorValidator.isValidStandard(competitor.getStandard());
 			return this.repository.save(competitor);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
 		}
-		
+
 	}
-	
+
 	@GetMapping("/competitors/{id}")
 	Optional<Competitor> index(@PathVariable Long id) {
 		return repository.findById(id);
 	}
-	
+
 	@GetMapping("/competitors/registration/{registration}")
 	Competitor indexByRegistration(@PathVariable Long registration) {
 		return this.repository.findByRegistration(registration);
 	}
-	
+
 	@PutMapping("/competitors/{id}")
 	Competitor replaceCompetitor(@RequestBody Competitor newCompetitor, @PathVariable Long id) {
 		return this.repository.findById(id)
@@ -65,7 +79,7 @@ public class CompetitorController {
 					return null;
 				});
 	}
-	
+
 	@DeleteMapping("/competitors/{id}")
 	boolean deleteCompetitor(@PathVariable Long id) {
 		this.repository.deleteById(id);
