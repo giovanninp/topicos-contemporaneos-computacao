@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<XML>
+	<Competitor>
+		<name>Glauber</name>
+		<registration>10000000</registration>
+        <performance>0.0</performance>
+        <standard>0.0</standard>
+	</Competitor>
+    <Competitor>
+		<name>Glauber</name>
+		<registration>10000000</registration>
+        <performance>0.0</performance>
+        <standard>0.0</standard>
+	</Competitor>
+    <Competitor>
+		<name>Glauber</name>
+		<registration>10000000</registration>
+        <performance>0.0</performance>
+        <standard>0.0</standard>
+	</Competitor>
+</XML>
