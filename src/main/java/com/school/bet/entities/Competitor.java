@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="competitor")
+@Table(name = "competitor")
 public class Competitor {
 
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
@@ -15,49 +15,55 @@ public class Competitor {
 	private Long registration;
 	private Float performance;
 	private Float standard;
-	
-	Competitor() {}
-	
+
+	Competitor() {
+	}
+
 	public Competitor(Long registration, String name, float performance, float standard) {
 		this.name = name;
 		this.registration = registration;
 		this.performance = performance;
 		this.standard = standard;
 	}
-	
+
 	public void setRegistration(Long registration) {
 		this.registration = registration;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setPerformance(Float performance) {
 		this.performance = performance;
 	}
-	
+
 	public void setStandard(Float standard) {
 		this.standard = standard;
 	}
-	
+
 	public Long getId() {
-		return this.id;	
+		return this.id;
 	}
-	
+
 	public Long getRegistration() {
 		return this.registration;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public Float getPerformance() {
 		return this.performance;
 	}
-	
+
 	public Float getStandard() {
 		return this.standard;
+	}
+
+	public String toCSV() {
+		return String.format("'%s','%s','%s','%s'", this.name, Long.toString(this.registration),
+				Float.toString(this.performance), Float.toString(this.standard));
 	}
 }
