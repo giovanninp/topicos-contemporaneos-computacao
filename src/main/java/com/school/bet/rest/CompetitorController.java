@@ -13,33 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.school.bet.entities.Competitor;
 import com.school.bet.repositories.CompetitorRepository;
-import com.school.bet.services.CompetitorImporter;
 import com.school.validators.CompetitorValidator;
 
 @RestController
 public class CompetitorController {
 	private final CompetitorRepository repository;
-	private CompetitorImporter importer;
 
 	public CompetitorController(CompetitorRepository repository) {
 		this.repository = repository;
-		this.importer = new CompetitorImporter();
 	}
 
 	@GetMapping("/competitors")
 	List<Competitor> all() {
 		return repository.findAll();
-	}
-
-	@PostMapping("/competitors/local")
-	List<Competitor> localBatch() {
-		List<Competitor> newCompetitors = this.importer.execute();
-
-		newCompetitors.forEach(competitor -> {
-			this.repository.save(competitor);
-		});
-
-		return newCompetitors;
 	}
 
 	@PostMapping("/competitors")

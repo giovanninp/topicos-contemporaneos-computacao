@@ -1,0 +1,6 @@
+id, name, registration, performance, standard
+76'Glauber','10000000','0.0','0.0'
+77'Abacate Suino','10000000','0.0','0.0'
+78'Adroaldo Von Sohsten','10000000','0.0','0.0'
+79'Godofred Shilfsen','10000000','0.0','0.0'
+80'Garibaldo','10','1.0','0.1'

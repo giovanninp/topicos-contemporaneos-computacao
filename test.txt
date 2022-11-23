@@ -7,13 +7,19 @@
         <standard>0.0</standard>
 	</Competitor>
     <Competitor>
-		<name>Glauber</name>
+		<name>Abacate Suino</name>
 		<registration>10000000</registration>
         <performance>0.0</performance>
         <standard>0.0</standard>
 	</Competitor>
     <Competitor>
-		<name>Glauber</name>
+		<name>Adroaldo Von Sohsten</name>
+		<registration>10000000</registration>
+        <performance>0.0</performance>
+        <standard>0.0</standard>
+	</Competitor>
+<Competitor>
+		<name>Godofred Shilfsen</name>
 		<registration>10000000</registration>
         <performance>0.0</performance>
         <standard>0.0</standard>

@@ -18,5 +18,6 @@ public class ExporterService {
         }
         this.writer.write(content);
         this.writer.close();
+        this.writer = null;
     }
 }
